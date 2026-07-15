@@ -12,8 +12,6 @@
     </div>
 
     <div id="no-clients" class="hidden text-center py-20 bg-gray-50 rounded-3xl">
-        <p class="text-3xl text-gray-400">Пока нет подключённых клиентов</p>
-        <p class="text-gray-500 mt-2">Когда кто-то подключится — появится здесь</p>
     </div>
 </div>
 
