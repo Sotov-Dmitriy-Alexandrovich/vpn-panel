@@ -9,10 +9,9 @@
 <body>
     <nav class="header">
         <div class="nav-left">
-            <a href="/connected" class="nav-link {{ request()->route('page')=='connected'?'active':'' }}">🟢 Подключенные</a>
-            <a href="/add" class="nav-link {{ request()->route('page')=='add'?'active':'' }}">➕ Подключить</a>
-            <a href="/console" class="nav-link {{ request()->route('page')=='console'?'active':'' }}">💻 Консоль</a>
-            <a href="/status" class="nav-link {{ request()->route('page')=='status'?'active':'' }}">📊 Статус</a>
+            <a href="/connected" class="nav-link {{ request()->route('page')=='connected'?'active':'' }}">Подключенные</a>
+            <a href="/add" class="nav-link {{ request()->route('page')=='add'?'active':'' }}">Подключить</a>
+            <a href="/status" class="nav-link {{ request()->route('page')=='status'?'active':'' }}">Статус</a>
         </div>
         <form method="POST" action="/logout">
             @csrf
