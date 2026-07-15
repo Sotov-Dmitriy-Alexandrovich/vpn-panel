@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  php:
+    image: php:8.4-fpm
+    container_name: vpn-panel-php
+    restart: always
+    volumes:
+      - ./web:/var/www/html
+      - ./scripts:/opt/scripts:ro
+      - /run/openvpn-server/status-server.log:/var/log/openvpn/status.log:ro
+    working_dir: /var/www/html
+    environment:
+      - TZ=Europe/London
+    depends_on:
+      - mysql
+  nginx:
+    image: nginx:alpine
+    container_name: vpn-panel-nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/var/www/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php
+  mysql:
+    image: mysql:8.0
+    container_name: vpn-panel-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: VpnR00t!2026
+      MYSQL_DATABASE: vpn_panel
+      MYSQL_USER: vpn_user
+      MYSQL_PASSWORD: VpnUs3r!2026
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+volumes:
+  mysql-data:
