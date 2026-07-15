@@ -3,12 +3,14 @@
 @section('content')
 
     <style>
+        .client-box{
+            margin-top: 20px;
+        }
         .client-card{
             display:flex;
             align-items:center;
             justify-content:space-between;
             gap:30px;
-
             background:#fff;
             border:1px solid #e5e7eb;
             border-radius:22px;
@@ -20,6 +22,7 @@
         .client-card:hover{
             transform:translateY(-2px);
             box-shadow:0 15px 35px rgba(0,0,0,.08);
+            cursor:pointer;
         }
 
         .client-left{
@@ -122,10 +125,10 @@
             <div id="last-update" class="text-gray-500"></div>
         </div>
 
-        <div id="clients-container"></div>
+        <div id="clients-container" class="client-box"></div>
 
         <div id="no-clients" class="hidden text-center py-24 text-gray-400 text-xl">
-            Нет подключённых клиентов
+
         </div>
 
     </div>
@@ -215,7 +218,7 @@ ${client.real_ip}
 
         loadClients();
 
-        setInterval(loadClients,3000);
+        setInterval(loadClients,1000);
 
     </script>
 
