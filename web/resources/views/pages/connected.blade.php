@@ -10,11 +10,6 @@
     <div id="clients-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Здесь будут карточки -->
     </div>
-
-    <div id="no-clients" class="hidden text-center py-20 bg-gray-50 rounded-3xl">
-        <p class="text-3xl text-gray-400">Пока нет подключённых клиентов</p>
-        <p class="text-gray-500 mt-2">Когда кто-то подключится — появится здесь</p>
-    </div>
 </div>
 
 <script>
@@ -24,7 +19,7 @@ function loadClients() {
         .then(data => {
             const container = document.getElementById('clients-container');
             const noClients = document.getElementById('no-clients');
-            
+
             container.innerHTML = '';
 
             if (!data.clients || data.clients.length === 0) {
@@ -46,7 +41,7 @@ function loadClients() {
                             <div class="text-sm text-gray-500">${client.real_ip}</div>
                         </div>
                     </div>
-                    
+
                     <div class="mt-6 pt-6 border-t grid grid-cols-2 gap-4 text-sm">
                         <div>
                             <span class="text-gray-500">Отправлено</span><br>
@@ -57,7 +52,7 @@ function loadClients() {
                             <span class="font-medium">${client.in}</span>
                         </div>
                     </div>
-                    
+
                     <div class="mt-4 text-xs text-gray-400">
                         Подключён: ${client.since}
                     </div>
