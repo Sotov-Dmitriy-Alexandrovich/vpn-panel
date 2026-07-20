@@ -10,13 +10,22 @@
       <sourceFolder url="file://$MODULE_DIR$/web/tests/Unit" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/web/storage/app" />
       <excludeFolder url="file://$MODULE_DIR$/web/storage/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/dragonmantank/cron-expression" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/fruitcake/php-cors" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/graham-campbell/result-type" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/league/commonmark" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/league/config" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/league/flysystem" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/league/flysystem-local" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/league/mime-type-detection" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/league/uri" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/league/uri-interfaces" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/nunomaduro/termwind" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/phpoption/phpoption" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/psr/clock" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/psr/event-dispatcher" />
@@ -28,6 +37,7 @@
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/psy/psysh" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/ralouphie/getallheaders" />
       <excludeFolder url="file://$MODULE_DIR$/web/vendor/tijsverkoyen/css-to-inline-styles" />
+      <excludeFolder url="file://$MODULE_DIR$/web/vendor/voku/portable-ascii" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

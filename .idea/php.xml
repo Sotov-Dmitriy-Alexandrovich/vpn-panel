@@ -30,6 +30,16 @@
       <path value="$PROJECT_DIR$/web/vendor/league/config" />
       <path value="$PROJECT_DIR$/web/vendor/league/flysystem" />
       <path value="$PROJECT_DIR$/web/vendor/league/flysystem-local" />
+      <path value="$PROJECT_DIR$/web/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/web/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/web/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/web/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/web/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/web/vendor/league/uri-interfaces" />
+      <path value="$PROJECT_DIR$/web/vendor/league/uri" />
+      <path value="$PROJECT_DIR$/web/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/web/vendor/nunomaduro/termwind" />
+      <path value="$PROJECT_DIR$/web/vendor/phpoption/phpoption" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2">
