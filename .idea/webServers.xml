@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e4e10b05-3c1b-41ac-aae0-ad7e0023fdbe" name="VPN" url="http://vpn.sotov.tech">
+        <fileTransfer rootFolder="/opt/vpn-panel" accessType="SFTP" host="185.39.19.127" port="22" sshConfigId="5dc3d291-1ebf-4d7a-a3b9-f765d732d1f4" sshConfig="root@185.39.19.127:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

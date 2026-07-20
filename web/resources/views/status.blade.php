@@ -2,28 +2,13 @@
 
 @section('content')
     <div class="status-page">
-        <h1 class="page-title">Статус сервера</h1>
+        <h1 class="page-title">📊 Статус сервера</h1>
 
         <div class="status-grid" id="status-container">
             <!-- CPU -->
             <div class="status-card">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                 class="icon icon-tabler icons-tabler-outline icon-tabler-cpu">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-	<path d="M5 6a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1l0 -12"/>
-	<path d="M9 9h6v6h-6l0 -6"/>
-	<path d="M3 10h2"/>
-	<path d="M3 14h2"/>
-	<path d="M10 3v2"/>
-	<path d="M14 3v2"/>
-	<path d="M21 10h-2"/>
-	<path d="M21 14h-2"/>
-	<path d="M14 21v-2"/>
-	<path d="M10 21v-2"/>
-</svg></span>
+                    <span class="card-icon">🔥</span>
                     <span class="card-title">CPU</span>
                 </div>
                 <div class="card-content">
@@ -34,10 +19,8 @@
                         <span class="progress-text" id="cpu-text">{{ $data['cpu']['usage'] }}%</span>
                     </div>
                     <div class="card-details">
-                        <div class="detail-item"><span>Ядер:</span><span
-                                id="cpu-cores">{{ $data['cpu']['cores'] }}</span></div>
-                        <div class="detail-item"><span>Load (1m):</span><span
-                                id="cpu-load">{{ $data['cpu']['load_1min'] }}</span></div>
+                        <div class="detail-item"><span>Ядер:</span><span id="cpu-cores">{{ $data['cpu']['cores'] }}</span></div>
+                        <div class="detail-item"><span>Load (1m):</span><span id="cpu-load">{{ $data['cpu']['load_1min'] }}</span></div>
                     </div>
                 </div>
             </div>
@@ -45,15 +28,7 @@
             <!-- RAM -->
             <div class="status-card">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                 class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-	<path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"/>
-	<path d="M10 14a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
-	<path d="M14 4l0 4l-6 0l0 -4"/>
-</svg></span>
+                    <span class="card-icon">💾</span>
                     <span class="card-title">RAM</span>
                 </div>
                 <div class="card-content">
@@ -65,8 +40,7 @@
                     </div>
                     <div class="card-details">
                         <div class="detail-item"><span>Всего:</span><span>{{ $data['ram']['total'] }} MB</span></div>
-                        <div class="detail-item"><span>Свободно:</span><span
-                                id="ram-free">{{ $data['ram']['free'] }} MB</span></div>
+                        <div class="detail-item"><span>Свободно:</span><span id="ram-free">{{ $data['ram']['free'] }} MB</span></div>
                     </div>
                 </div>
             </div>
@@ -74,30 +48,19 @@
             <!-- Disk -->
             <div class="status-card">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                 class="icon icon-tabler icons-tabler-outline icon-tabler-disc">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-	<path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/>
-	<path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/>
-	<path d="M7 12a5 5 0 0 1 5 -5"/>
-	<path d="M12 17a5 5 0 0 0 5 -5"/>
-</svg></span>
+                    <span class="card-icon">💿</span>
                     <span class="card-title">Диск (/)</span>
                 </div>
                 <div class="card-content">
                     <div class="progress-container">
                         <div class="progress-bar">
-                            <div class="progress-fill" id="disk-bar"
-                                 style="width: {{ $data['disk']['usage_percent'] }}%"></div>
+                            <div class="progress-fill" id="disk-bar" style="width: {{ $data['disk']['usage_percent'] }}%"></div>
                         </div>
                         <span class="progress-text" id="disk-text">{{ $data['disk']['usage_percent'] }}%</span>
                     </div>
                     <div class="card-details">
                         <div class="detail-item"><span>Всего:</span><span>{{ $data['disk']['size'] }}</span></div>
-                        <div class="detail-item"><span>Свободно:</span><span
-                                id="disk-free">{{ $data['disk']['available'] }}</span></div>
+                        <div class="detail-item"><span>Свободно:</span><span id="disk-free">{{ $data['disk']['available'] }}</span></div>
                     </div>
                 </div>
             </div>
@@ -105,24 +68,14 @@
             <!-- Uptime -->
             <div class="status-card">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                 class="icon icon-tabler icons-tabler-outline icon-tabler-clock-hour-1">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-	<path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/>
-	<path d="M12 7v5"/>
-	<path d="M12 12l2 -3"/>
-</svg></span>
-                    <span class="card-title">Время работы</span>
+                    <span class="card-icon">⏱️</span>
+                    <span class="card-title">Uptime</span>
                 </div>
                 <div class="card-content">
                     <div class="uptime-value" id="uptime-text">{{ $data['uptime'] }}</div>
                     <div class="card-details">
-                        <div class="detail-item"><span>Load (5m):</span><span
-                                id="load-5m">{{ $data['load']['5min'] }}</span></div>
-                        <div class="detail-item"><span>Load (15m):</span><span
-                                id="load-15m">{{ $data['load']['15min'] }}</span></div>
+                        <div class="detail-item"><span>Load (5m):</span><span id="load-5m">{{ $data['load']['5min'] }}</span></div>
+                        <div class="detail-item"><span>Load (15m):</span><span id="load-15m">{{ $data['load']['15min'] }}</span></div>
                     </div>
                 </div>
             </div>
@@ -130,21 +83,7 @@
             <!-- Network -->
             <div class="status-card full-width">
                 <div class="card-header">
-                    <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                 class="icon icon-tabler icons-tabler-outline icon-tabler-world-www">
-	<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-	<path d="M19.5 7a9 9 0 0 0 -7.5 -4a8.991 8.991 0 0 0 -7.484 4"/>
-	<path d="M11.5 3a16.989 16.989 0 0 0 -1.826 4"/>
-	<path d="M12.5 3a16.989 16.989 0 0 1 1.828 4"/>
-	<path d="M19.5 17a9 9 0 0 1 -7.5 4a8.991 8.991 0 0 1 -7.484 -4"/>
-	<path d="M11.5 21a16.989 16.989 0 0 1 -1.826 -4"/>
-	<path d="M12.5 21a16.989 16.989 0 0 0 1.828 -4"/>
-	<path d="M2 10l1 4l1.5 -4l1.5 4l1 -4"/>
-	<path d="M17 10l1 4l1.5 -4l1.5 4l1 -4"/>
-	<path d="M9.5 10l1 4l1.5 -4l1.5 4l1 -4"/>
-</svg></span>
+                    <span class="card-icon">🌐</span>
                     <span class="card-title">Сетевые интерфейсы</span>
                 </div>
                 <div class="card-content">
@@ -155,13 +94,11 @@
                                 <div class="network-stats">
                                     <div class="network-stat">
                                         <span class="stat-label">↓ RX:</span>
-                                        <span class="stat-value" data-iface="{{ $interface['name'] }}"
-                                              data-type="rx">{{ $interface['rx'] }}</span>
+                                        <span class="stat-value" data-iface="{{ $interface['name'] }}" data-type="rx">{{ $interface['rx'] }}</span>
                                     </div>
                                     <div class="network-stat">
                                         <span class="stat-label">↑ TX:</span>
-                                        <span class="stat-value" data-iface="{{ $interface['name'] }}"
-                                              data-type="tx">{{ $interface['tx'] }}</span>
+                                        <span class="stat-value" data-iface="{{ $interface['name'] }}" data-type="tx">{{ $interface['tx'] }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -173,28 +110,34 @@
     </div>
 
     <script>
+        // Функция для обновления данных в реальном времени каждые 5 секунд
         function updateStatus() {
             fetch(window.location.href, {
-                headers: {'X-Requested-With': 'XMLHttpRequest'}
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
             })
                 .then(response => response.json())
                 .then(data => {
+                    // CPU
                     document.getElementById('cpu-bar').style.width = data.cpu.usage + '%';
                     document.getElementById('cpu-text').innerText = data.cpu.usage + '%';
                     document.getElementById('cpu-load').innerText = data.cpu.load_1min;
 
+                    // RAM
                     document.getElementById('ram-bar').style.width = data.ram.usage + '%';
                     document.getElementById('ram-text').innerText = data.ram.usage + '%';
                     document.getElementById('ram-free').innerText = data.ram.free + ' MB';
 
+                    // Disk
                     document.getElementById('disk-bar').style.width = data.disk.usage_percent + '%';
                     document.getElementById('disk-text').innerText = data.disk.usage_percent + '%';
                     document.getElementById('disk-free').innerText = data.disk.available;
 
+                    // Uptime & Load
                     document.getElementById('uptime-text').innerText = data.uptime;
                     document.getElementById('load-5m').innerText = data.load['5min'];
                     document.getElementById('load-15m').innerText = data.load['15min'];
 
+                    // Network
                     data.network.forEach(net => {
                         const rxEl = document.querySelector(`.stat-value[data-iface="${net.name}"][data-type="rx"]`);
                         const txEl = document.querySelector(`.stat-value[data-iface="${net.name}"][data-type="tx"]`);
@@ -205,7 +148,7 @@
                 .catch(err => console.error('Ошибка обновления статуса:', err));
         }
 
-        // ОБНОВЛЕНИЕ КАЖДУЮ 1 СЕКУНДУ (1000 мс)
-        setInterval(updateStatus, 1000);
+        // Запускаем обновление каждые 5 секунд
+        setInterval(updateStatus, 5000);
     </script>
 @endsection

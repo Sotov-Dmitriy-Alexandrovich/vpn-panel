@@ -1,30 +1,54 @@
 #!/bin/bash
+
+set -e
+
 CLIENT="$1"
-[ -z "$CLIENT" ] && { echo "ERROR:NAME_EMPTY"; exit 1; }
 
-OVPN_DIR="/etc/openvpn/server"
-EASYRSA="$OVPN_DIR/easy-rsa"
-[ ! -d "$EASYRSA" ] && { echo "ERROR:EASYRSA_NOT_FOUND"; exit 1; }
+[ -z "$CLIENT" ] && {
+    echo "ERROR:NAME_EMPTY"
+    exit 1
+}
 
-cd "$EASYRSA" || { echo "ERROR:CD_FAILED"; exit 1; }
+OVPN=/etc/openvpn/server
+EASY=$OVPN/easy-rsa
+DOWNLOAD=/opt/vpn-panel/www/downloads
 
-# 1. Отзываем сертификат
-./easyrsa --batch revoke "$CLIENT" >/dev/null 2>&1
-[ $? -ne 0 ] && { echo "ERROR:REVOKE_FAILED"; exit 1; }
+cd "$EASY"
 
-# 2. Генерируем новый CRL
-./easyrsa --batch gen-crl >/dev/null 2>&1
-[ $? -ne 0 ] && { echo "ERROR:CRL_GEN_FAILED"; exit 1; }
+CRT=$(find pki/issued -maxdepth 1 -iname "$CLIENT.crt" | head -n1)
 
-# 3. Копируем crl.pem в папку OpenVPN (с правильными правами)
-cp "$EASYRSA/pki/crl.pem" "$OVPN_DIR/crl.pem"
-chown nobody:nogroup "$OVPN_DIR/crl.pem"
-chmod 644 "$OVPN_DIR/crl.pem"
+if [ -z "$CRT" ]; then
+    echo "ERROR:CLIENT_NOT_FOUND"
+    exit 1
+fi
 
-# 4. Перезагружаем OpenVPN (чтобы подхватил новый CRL)
-systemctl reload openvpn-server@server.service 2>/dev/null || systemctl restart openvpn 2>/dev/null || true
+CLIENT=$(basename "$CRT" .crt)
 
-# 5. Удаляем .ovpn файл из папки скачивания
-rm -f "/opt/vpn-panel/www/downloads/$CLIENT.ovpn"
+echo "Removing $CLIENT"
 
-echo "SUCCESS:REVOKED:$CLIENT"
+printf "yes\n" | ./easyrsa revoke "$CLIENT"
+
+./easyrsa gen-crl
+
+cp pki/crl.pem "$OVPN/crl.pem"
+
+chmod 644 "$OVPN/crl.pem"
+
+chown nobody:nogroup "$OVPN/crl.pem" 2>/dev/null || true
+
+rm -f pki/issued/$CLIENT.crt
+rm -f pki/private/$CLIENT.key
+rm -f pki/reqs/$CLIENT.req
+rm -f pki/inline/$CLIENT.inline
+rm -f pki/inline/private/$CLIENT.inline
+
+sed -i "\|/CN=$CLIENT\$|d" pki/index.txt
+
+rm -f "$DOWNLOAD/$CLIENT.ovpn"
+
+find /root -type f -iname "$CLIENT.ovpn" -delete
+
+systemctl restart openvpn-server@server.service 2>/dev/null || \
+systemctl restart openvpn 2>/dev/null || true
+
+echo "SUCCESS:$CLIENT"

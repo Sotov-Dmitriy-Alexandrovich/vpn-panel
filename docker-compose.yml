@@ -1,13 +1,19 @@
 version: '3.8'
 services:
   php:
-    image: php:8.4-fpm
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: vpn-panel-php
+    user: "root"
     restart: always
     volumes:
-      - ./web:/var/www/html
-      - ./scripts:/opt/scripts:ro
-      - /run/openvpn-server/status-server.log:/var/log/openvpn/status.log:ro
+        - ./web:/var/www/html
+        - ./scripts:/opt/scripts:ro
+        - /run/openvpn-server/status-server.log:/var/log/openvpn/status.log:ro
+        - /opt/vpn-panel/www/downloads:/opt/vpn-panel/www/downloads
+        - /etc/openvpn/server:/etc/openvpn/server
+        - /root:/host-root:rw
     working_dir: /var/www/html
     environment:
       - TZ=Europe/London

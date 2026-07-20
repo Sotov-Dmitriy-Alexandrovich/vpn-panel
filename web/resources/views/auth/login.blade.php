@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Вход | VPN Panel</title>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('img/logo.svg') }}">
     <style>
         body{margin:0;font-family:system-ui,sans-serif;background:#0f172a;color:#e2e8f0;display:flex;align-items:center;justify-content:center;height:100vh}
         .box{background:#1e293b;padding:2rem;border-radius:12px;width:100%;max-width:360px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
