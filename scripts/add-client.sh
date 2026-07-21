@@ -1,35 +1,44 @@
 #!/bin/bash
+
+set -e
+
 CLIENT="$1"
-[ -z "$CLIENT" ] && { echo "ERROR:NAME_EMPTY"; exit 1; }
 
-OVPN_DIR="/etc/openvpn/server"
-EASYRSA="$OVPN_DIR/easy-rsa"
-[ ! -d "$EASYRSA" ] && { echo "ERROR:EASYRSA_NOT_FOUND"; exit 1; }
+[ -z "$CLIENT" ] && {
+    echo "ERROR:NAME_EMPTY"
+    exit 1
+}
 
-cd "$EASYRSA" || { echo "ERROR:CD_FAILED"; exit 1; }
+[[ "$CLIENT" =~ ^[A-Za-z0-9_-]+$ ]] || {
+    echo "ERROR:INVALID_NAME"
+    exit 1
+}
 
-# Генерируем сертификат в batch-режиме (без вопросов)
-./easyrsa --batch build-client-full "$CLIENT" nopass >/dev/null 2>&1
-[ $? -ne 0 ] && { echo "ERROR:CERT_GEN_FAILED"; exit 1; }
+OVPN=/etc/openvpn/server
+EASY=$OVPN/easy-rsa
+DOWNLOAD=/opt/vpn-panel/www/downloads
 
-# Создаём папку для скачивания
-mkdir -p /opt/vpn-panel/www/downloads
+cd "$EASY"
 
-# Собираем .ovpn файл
-{
-  cat "$OVPN_DIR/client-common.txt"
-  echo "<ca>"
-  cat "$OVPN_DIR/ca.crt"
-  echo "</ca>"
-  echo "<cert>"
-  cat "$EASYRSA/pki/issued/$CLIENT.crt"
-  echo "</cert>"
-  echo "<key>"
-  cat "$EASYRSA/pki/private/$CLIENT.key"
-  echo "</key>"
-  echo "<tls-crypt>"
-  cat "$OVPN_DIR/tc.key"
-  echo "</tls-crypt>"
-} > "/opt/vpn-panel/www/downloads/$CLIENT.ovpn"
+if grep -q "/CN=$CLIENT\$" pki/index.txt; then
+    echo "ERROR:CLIENT_EXISTS"
+    exit 1
+fi
 
-[ -f "/opt/vpn-panel/www/downloads/$CLIENT.ovpn" ] && echo "SUCCESS:$CLIENT" || { echo "ERROR:FILE_NOT_CREATED"; exit 1; }
+./easyrsa --batch build-client-full "$CLIENT" nopass
+
+mkdir -p "$DOWNLOAD"
+
+cat "$OVPN/client-common.txt" \
+<(echo "<ca>") \
+"$OVPN/ca.crt" \
+<(echo "</ca><cert>") \
+"pki/issued/$CLIENT.crt" \
+<(echo "</cert><key>") \
+"pki/private/$CLIENT.key" \
+<(echo "</key><tls-crypt>") \
+"$OVPN/tc.key" \
+<(echo "</tls-crypt>") \
+> "$DOWNLOAD/$CLIENT.ovpn"
+
+echo "SUCCESS:$CLIENT"
